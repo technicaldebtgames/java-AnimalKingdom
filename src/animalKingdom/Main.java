@@ -6,11 +6,37 @@ import java.util.ArrayList;
 public class Main 
 {
 
+    private static List<Animal> filterAnimal(List<Animal> animals, CheckAnimal tester)
+    {
+
+        // temp animal list to hold passed animals
+        List<Animal> tempAnimalList = new ArrayList<>();
+
+        // for each animal run the test passed in tester object
+        for(Animal a : animals)
+        {
+
+            // if test passes add animal to temp list
+            if(tester.test(a))
+            {
+
+                tempAnimalList.add(a);
+
+            }
+
+        }
+
+        // we are done now so return the temp list of animals that passed test
+        return tempAnimalList;
+
+    }
+
     public static void main(String[] args)
     {
 
         System.out.println("Animal Kingdom Start -->");
         
+        // init animal array... err... list... uhh... arraylist...
         List<Animal> animalList = new ArrayList<>(
             List.of(new Mammal("Panda", 1869),
                     new Mammal("Zebra", 1778),
@@ -29,7 +55,44 @@ public class Main
                     new Fish("Perch", 1758))
         );
 
-        System.out.println("<-- Animal Kingdom End");
+        /*
+        System.out.println("\n\n\nSort list -->");
+
+        myList.sort((v1, v2) -> v1.getName().compareToIgnoreCase(v2.getName()));
+        myList.forEach((v) -> System.out.println(v.getName()));
+
+        System.out.println("\nShow only neg fuel levels and sort by fuel level -->");
+
+        List<AbstractVehicle> filteredList = filterVehicle(myList, v -> v.getFuelLevel() < 0);
+        filteredList.sort((v1, v2) -> v1.getFuelLevel() - v2.getFuelLevel());
+        filteredList.forEach((v) -> System.out.println(v.toString()));
+
+        System.out.println("\nShow only pos fuel levels for horses -->");
+
+        filteredList = filterVehicle(myList, v -> (v.getFuelLevel() > 0) && (v instanceof HorseFromVehicle));
+        filteredList.forEach((v) -> System.out.println(v));
+        */
+
+        System.out.println("\n\nAnimals, descending order by year -->");
+
+        animalList.sort((a1, a2) -> a2.getYear() - a1.getYear());
+        System.out.println(animalList);
+
+        System.out.println("\n\nAnimals, alphabetically -->");
+
+        System.out.println("\n\nAnimals, movement type -->");
+
+        System.out.println("\n\nAnimals, breathing type = lungs -->");
+
+        System.out.println("\n\nAnimals, breathing type = lungs, year = 1758 -->");
+
+        System.out.println("\n\nAnimals, reproduction type = eggs, breathing type = lungs -->");
+
+        System.out.println("\n\nAnimals, alphabetically, year = 1758 -->");
+
+        System.out.println("\n\nMammals, alphabetically -->");
+
+        System.out.println("\n\n<-- Animal Kingdom End");
 
     }
 

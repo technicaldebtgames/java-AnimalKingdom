@@ -34,4 +34,12 @@ public class Mammal extends Animal
 
     }
 
+    @Override
+    public String toString()
+    {
+
+        return id + " " + name + " " + year + " " + this.move() + " " + this.breathe() + " " + this.reproduce();
+
+    }
+
 }
