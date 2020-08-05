@@ -80,17 +80,41 @@ public class Main
 
         System.out.println("\n\nAnimals, alphabetically -->");
 
+        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        System.out.println(animalList);
+
         System.out.println("\n\nAnimals, movement type -->");
+
+        animalList.sort((a1, a2) -> a1.move().compareToIgnoreCase(a2.move()));
+        System.out.println(animalList);
 
         System.out.println("\n\nAnimals, breathing type = lungs -->");
 
+        List<Animal> filteredList = filterAnimal(animalList, a -> a.breathe() == "lungs");
+        System.out.println(filteredList);
+
         System.out.println("\n\nAnimals, breathing type = lungs, year = 1758 -->");
+
+        filteredList = filterAnimal(filteredList, a -> a.getYear() == 1758);
+        System.out.println(filteredList);
 
         System.out.println("\n\nAnimals, reproduction type = eggs, breathing type = lungs -->");
 
+        // for this subset animalList is still sorted properly
+        filteredList = filterAnimal(filterAnimal(animalList, a -> a.reproduce() == "eggs"), a -> a.breathe() == "lungs");
+        System.out.println(filteredList);
+
         System.out.println("\n\nAnimals, alphabetically, year = 1758 -->");
 
+        // had to re-sort animalList first
+        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName()));
+        filteredList = filterAnimal(animalList, a -> a.getYear() == 1758);
+        System.out.println(filteredList);
+
         System.out.println("\n\nMammals, alphabetically -->");
+
+        filteredList = filterAnimal(animalList, a -> a instanceof Mammal);
+        System.out.println(filteredList);
 
         System.out.println("\n\n<-- Animal Kingdom End");
 
